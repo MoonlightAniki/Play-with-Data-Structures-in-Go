@@ -158,23 +158,23 @@ func (list *LinkedList) removeElement(head *node, val interface{}) (newHead *nod
 }
 
 func (list *LinkedList) RemoveAll(val interface{}) bool {
-	ok := false
-	list.head = list.removeAll(list.head, val, &ok)
+	newHead, ok := list.removeAll(list.head, val, false)
+	list.head = newHead
 	return ok
 }
 
-func (list *LinkedList) removeAll(head *node, val interface{}, ok *bool) (*node) {
+func (list *LinkedList) removeAll(head *node, val interface{}, ok bool) (*node, bool) {
 	if head == nil {
-		return head
+		return head, ok
 	}
 	if head.val == val {
 		list.size--
-		head = list.removeAll(head.next, val, ok)
-		*ok = true
-		return head
+		ok = true
+		head, ok = list.removeAll(head.next, val, ok)
+		return head, ok
 	} else {
-		head.next = list.removeAll(head.next, val, ok)
-		return head
+		head.next, ok = list.removeAll(head.next, val, ok)
+		return head, ok
 	}
 }
 
