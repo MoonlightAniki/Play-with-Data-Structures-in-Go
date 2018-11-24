@@ -6,15 +6,31 @@ import (
 )
 
 func main() {
-	queue := queue.CreateArrayQueue()
-	fmt.Println(queue)
+	aq := queue.CreateArrayQueue()
+	fmt.Println(aq)
 
-	queue.Offer(1)
-	queue.Offer(2)
-	queue.Offer(3)
-	fmt.Println(queue)
+	aq.Offer(1)
+	aq.Offer(2)
+	aq.Offer(3)
+	fmt.Println(aq)
 
-	fmt.Println(queue.Front())
-	fmt.Println(queue.Poll())
-	fmt.Println(queue)
+	fmt.Println(aq.Front())
+	fmt.Println(aq.Poll())
+	fmt.Println(aq)
+
+	fmt.Println("-----------------------------")
+
+	lq := queue.CreateLoopQueue()
+	fmt.Println(lq)
+
+	for i := 0; i < 20; i++ {
+		lq.Offer(i)
+		fmt.Println(lq)
+	}
+
+	for i := 0; i < 10; i++ {
+		fmt.Println(lq.Front())
+		fmt.Println(lq.Poll())
+		fmt.Println(lq)
+	}
 }

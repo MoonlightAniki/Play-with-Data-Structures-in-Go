@@ -38,7 +38,7 @@ func (queue *ArrayQueue) Front() interface{} {
 
 func (queue *ArrayQueue) String() string {
 	var buffer bytes.Buffer
-	buffer.WriteString("Queue, front [")
+	buffer.WriteString("ArrayQueue, front [")
 	for i := 0; i < queue.arr.GetSize(); i++ {
 		buffer.WriteString(fmt.Sprintf("%v", queue.arr.Get(i)))
 		if i != queue.arr.GetSize()-1 {
